@@ -6,11 +6,113 @@
   <title>Hello PWA</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .toggle-link {
+      margin-top: 10px;
+      text-align: center;
+      color: #333;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hallo PWA!</h1>
-  <p>Diese App funktioniert offline.</p>
+  <div class="container" id="auth-container">
+    <h1>Hallo PWA!</h1>
+    <p>Diese App funktioniert offline.</p>
+
+    <div id="login-form">
+      <h2>Login</h2>
+      <form onsubmit="login(event)">
+        <input type="email" id="login-email" placeholder="E-Mail" required>
+        <input type="password" id="login-password" placeholder="Passwort" required>
+        <button type="submit">Login</button>
+      </form>
+      <div class="toggle-link" onclick="toggleForms()">Noch keinen Account? Registrieren</div>
+    </div>
+
+    <div id="register-form" style="display:none;">
+      <h2>Registrieren</h2>
+      <form onsubmit="register(event)">
+        <input type="email" id="register-email" placeholder="E-Mail" required>
+        <input type="password" id="register-password" placeholder="Passwort" required>
+        <button type="submit">Registrieren</button>
+      </form>
+      <div class="toggle-link" onclick="toggleForms()">Bereits registriert? Login</div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
+  <script>
+    function toggleForms() {
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+      }
+    }
+
+    function login(event) {
+      event.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      console.log("Login versucht mit", email, password);
+      alert("Login-Funktion noch nicht implementiert.");
+    }
+
+    function register(event) {
+      event.preventDefault();
+      const email = document.getElementById('register-email').value;
+      const password = document.getElementById('register-password').value;
+      console.log("Registrierung versucht mit", email, password);
+      alert("Registrierungs-Funktion noch nicht implementiert.");
+    }
+  </script>
 </body>
 </html>
